@@ -70,7 +70,7 @@ const fetchCoordsByIP = function(ip, callback) {
 const fetchISSFlyOverTimes = function(coords, callback) {
     const url = `https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`;
   
-    request(url, (error, response, body) => {
+    request((response) => {
       if (error) {
         callback(error, null);
         return;
@@ -86,4 +86,4 @@ const fetchISSFlyOverTimes = function(coords, callback) {
     });
   };
   
-  module.exports = { fetchISSFlyOverTimes };
+  module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
