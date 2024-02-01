@@ -14,12 +14,12 @@
         if (error) return callback(error, null);
     
         if (response.statusCode !== 200) {
-          console.log(Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null);
+          callback(Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null);
           return;
         }
     
         const ip = JSON.parse(body).ip;
-        console.log(null, ip);
+        callback(ip);
       });
     };
     
