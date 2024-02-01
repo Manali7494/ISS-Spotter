@@ -73,12 +73,12 @@ const fetchISSFlyOverTimes = function(coords, callback) {
     request(url, (error, response, body) => {
       if (error) {
         callback(error, null);
-
+        return;
       }
   
       if (response.statusCode !== 200) {
         callback(Error(`Status Code ${response.statusCode} when fetching ISS pass times: ${body}`), null);
-    
+        return;
       }
   
       const passes = JSON.parse(body).response;
