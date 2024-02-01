@@ -38,7 +38,7 @@ const fetchCoordsByIP = function(ip, callback) {
     request(`http://ipwho.is/${ip}`, (error, response, body) => {
 
       if (error) {
-        console.log(error, null);
+        callback(error, null);
         return;
       }
 
@@ -46,13 +46,10 @@ const fetchCoordsByIP = function(ip, callback) {
 
       if (!parsedBody.success) {
         const message = `Success status was ${parsedBody.success}. Server message says: ${parsedBody.message} when fetching for IP ${parsedBody.ip}`;
-        console.log(Error(message), null);
+        callback(Error(message), null);
         return;
       } 
-
-      const { latitude, longitude } = parsedBody;
-
-      console.log(null, {latitude, longitude});
+      callback(parsedBody);
     });
   };
 
