@@ -10,16 +10,14 @@
      *   - The IP address as a string (null if error). Example: "162.245.144.188"
      */
     const fetchMyIP = function(callback) {
-      request('https://www.gmail.com', (error, response, body) => {
-        if (error) return callback(error, null);
-    
+      request('https://api.ipify.org?format=json', (error, response, body) => {
         if (response.statusCode !== 200) {
           callback(Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null);
           return;
         }
     
         const ip = JSON.parse(body).ip;
-        callback(ip);
+        callback(null, ip);
       });
     };
     
