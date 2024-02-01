@@ -9,22 +9,18 @@
      *   - An error, if any (nullable)
      *   - The IP address as a string (null if error). Example: "162.245.144.188"
      */
-
-    request('https://www.gmail.com', (error, response, body) => {
+    const fetchMyIP = function(callback) {
+      request('https://www.gmail.com', (error, response, body) => {
         if (error) return callback(error, null);
     
         if (response.statusCode !== 200) {
-          callback(Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null);
+          console.log(Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null);
           return;
         }
     
         const ip = JSON.parse(body).ip;
-        callback(null, ip);
+        console.log(null, ip);
       });
-    const fetchMyIP = function(callback) {
-
-
-    
     };
     
     module.exports = { fetchMyIP };
