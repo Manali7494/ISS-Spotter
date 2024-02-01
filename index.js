@@ -19,13 +19,13 @@ const { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes } = require('./iss');
 // });
 
 // The code below is temporary and can be commented out.
-const exampleCoords = { latitude: '20.27670', longitude: '-45.13000' };
+const exampleCoords = { latitude: '49.27670', longitude: '-123.13000' };
 
 fetchISSFlyOverTimes(exampleCoords, (error, passTimes) => {
   if (error) {
-    console.log("It's an error" , error);
+    console.log("It didn't work!" , error);
     return;
   }
 
-  console.log('Result console pass time' , passTimes);
+  console.log('It worked! Returned flyover times:' , passTimes);
 });
