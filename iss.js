@@ -96,19 +96,25 @@ const fetchISSFlyOverTimes = function(coords, callback) {
  *     [ { risetime: <number>, duration: <number> }, ... ]
  */
 const nextISSTimesForMyLocation = function(callback) {
+    fetchMyIP((error, ip) => {
+      if (error) {
+        return console.log(error, null);
+      }
+  
       fetchCoordsByIP(ip, (error, loc) => {
         if (error) {
-          return callback(error, null);
+          return console.log(error, null);
         }
   
         fetchISSFlyOverTimes(loc, (error, nextPasses) => {
           if (error) {
-            return callback(error, null);
+            return console.log(error, null);
           }
   
-          callback(null, nextPasses);
+          console.log(null, nextPasses);
         });
       });
+    });
   };
   
   // Only export nextISSTimesForMyLocation and not the other three (API request) functions.
