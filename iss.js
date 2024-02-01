@@ -37,6 +37,11 @@
 const fetchCoordsByIP = function(ip, callback) {
     request(`http://ipwho.is/${ip}`, (error, response, body) => {
 
+      if (error) {
+        callback(error, null);
+        return;
+      }
+
       const parsedBody = JSON.parse(body);
 
       if (!parsedBody.success) {
@@ -44,10 +49,6 @@ const fetchCoordsByIP = function(ip, callback) {
         callback(Error(message), null);
         return;
       } 
-
-      const { latitude, longitude } = parsedBody;
-
-      callback(null, {latitude, longitude});
     });
   };
 
